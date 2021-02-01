@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# brightness
+#
+# A quick way to alter brightness on laptop screens
+# 100% = 1
+# 50% = .5
+# etc...
+# 
+# Examples:
+#   brightness .5
+#   brightness 1
+
+monitor=$(xrandr --listactivemonitors | cut -d' ' -f 6)
+
+xrandr --output $monitor --brightness $1

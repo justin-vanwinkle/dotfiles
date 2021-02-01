@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# copy
+#
+# A quick way to copy text from terminal to clipboard
+# 
+# Examples:
+#   copy !!
+#   copy cat file.txt
+
+echo $1 | xclip -sel c

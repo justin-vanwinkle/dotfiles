@@ -1,0 +1,230 @@
+" Vundle and plugins
+" ========================================================================
+
+" Vundle not installed?  Here's how to get it set up:
+" 1. mkdir -p ~/.vim/bundle
+" 2. cd ~/.vim/bundle
+" 3. git clone https://github.com/VundleVim/Vundle.vim.git
+" 4. Start Vim
+" 5. :PluginInstall
+" 6. Happy Vimming!
+
+" Helpful Vundle commands:
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" see :h vundle for more details or wiki for FAQ
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" ========================================================================
+" START VUNDLE PLUGINS
+" ========================================================================
+" (Vundle.vim must always be first)
+Plugin 'gmarik/Vundle.vim'                 " Vundle vundles Vundle
+
+" ========================================================================
+" Plugins that don't need configuring
+" ========================================================================
+" Plugin 'PurpleGuitar/vim-croz-scheme'       " Craig's colors
+Plugin 'liuchengxu/space-vim-dark'          " Spacevim colors
+Plugin 'tpope/vim-sensible'                 " Sensible defaults for vim settings
+" Plugin 'tpope/vim-fugitive'                 " Git integration (:GStatus, :GPush, etc.)
+" Plugin 'tpope/vim-unimpaired'               " Shortcuts, such as ]b (:bnext), ]q (:cnext), an ]e (exchange line)
+Plugin 'tomtom/tcomment_vim'                " Sophisticated commenting, e.g. Ctrl-// to comment
+" Plugin 'guns/xterm-color-table.vim'         " Display a color chart of XTerm color codes
+Plugin 'tmux-plugins/vim-tmux'              " Syntax support for tmux files
+Plugin 'pangloss/vim-javascript'            " Syntax handler for JavaScript
+Plugin 'elzr/vim-json'                      " Syntax handling for JSON
+" Plugin 'nblock/vim-dokuwiki'                " Syntax highlighting for Dokuwiki text files
+"Plugin 'Raimondi/delimitMate'               " Automatically close quote, parens, brackets, etc.
+" Plugin 'tommcdo/vim-exchange'               " Exchange chunks of text
+" Plugin 'kshenoy/vim-signature'              " Show marks in gutter
+" Plugin 'tpope/vim-speeddating'              " Increment/decrement dates
+Plugin 'wzhliang/ttfzoom.vim'               " Zoom with Ctrl-mousewheel
+" Plugin 'severin-lemaignan/vim-minimap'      " Minimap
+" Plugin 'ynkdir/vim-vimlparser'              " VimL parser
+" Plugin 'syngan/vim-vimlint'                 " Vim linter
+Plugin 'ctrlpvim/ctrlp.vim'                 " Fast file finder
+Plugin 'chrisbra/csv.vim'                   " csv file support
+" Plugin 'kovisoft/slimv'                     " Lisp/SLIME support
+" Plugin 'tpope/vim-abolish'                  " Tools for smart replace, mangling/demangling, camelCasing, etc.
+Plugin 'xolox/vim-misc'                     " Libs for plugins by xolox
+" Plugin 'tpope/vim-dispatch'                 " Async capabilities
+" Plugin 'vimwiki/vimwiki'                    " Wiki
+
+scriptencoding utf-8
+
+" ========================================================================
+" Devicons
+" ========================================================================
+Plugin 'ryanoasis/vim-devicons'             " Icons
+set guifont=SauceCodePro\ Nerd\ Font:h10
+let g:airline_powerline_fonts = 1
+
+
+" ========================================================================
+" Language Pack (Polyglot)
+" ========================================================================
+Plugin 'sheerun/vim-polyglot'               " Language pack
+
+" ========================================================================
+" Deoplete
+" ========================================================================
+"if has('nvim')
+"    Plugin 'shougo/deoplete.nvim'
+"    let g:deoplete#enable_at_startup = 1
+"endif
+
+
+" ========================================================================
+" NeoComplete
+" ========================================================================
+if !has('nvim')
+    Plugin 'shougo/neocomplete.vim'
+    let g:neocomplete#enable_at_startup = 1
+endif
+
+
+" ========================================================================
+" Better Whitespace
+" ========================================================================
+Plugin 'ntpeters/vim-better-whitespace'     "whitespace highlighter
+
+" Strip whitespace on save
+" autocmd BufEnter * EnableStripWhitespaceOnSave
+
+" ========================================================================
+" Tagbar
+" ========================================================================
+Plugin 'majutsushi/tagbar'                 " Sidebar for code
+let g:tagbar_sort = 0
+nmap <silent> <leader>tags :TagbarToggle<CR>
+
+
+" ========================================================================
+" EasyTags
+" ========================================================================
+Plugin 'xolox/vim-easytags'                 " Auto ctag generator
+set tags=./tags;,~/.vimtags
+
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+
+" ========================================================================
+" Golang support
+" ========================================================================
+" Plugin 'fatih/vim-go'                      " Golang tools
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+"
+" Automatic import insertion
+" let g:go_fmt_command = \"goimports"
+
+
+" ========================================================================
+" Highlighting
+" ========================================================================
+Plugin 'kergoth/vim-hilinks'               " Show highlighting at the cursor
+let g:hilinks_nobeval= 1
+
+" ========================================================================
+" Syntastic
+" ========================================================================
+Plugin 'scrooloose/syntastic'
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+
+
+" ========================================================================
+" Airline (Powerline/Status)
+" ========================================================================
+Plugin 'vim-airline/vim-airline.git'
+Plugin 'vim-airline/vim-airline-themes.git'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_powerline_fonts = 1
+set noshowmode  "hide default status line
+
+
+" ========================================================================
+" NERDTree file browser
+" ========================================================================
+Plugin 'scrooloose/nerdtree'
+let g:nerdtree_tabs_open_on_console_startup = 1
+let g:NERDTreeShowHidden = 1
+
+nnoremap <Leader>nt :NERDTree<CR>
+
+" From: http://superuser.com/questions/195022/vim-how-to-synchronize-nerdtree-with-current-opened-tab-file-path
+" returns true iff is NERDTree open/active
+function! s:isNTOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+function! s:syncTree()
+    if &modifiable && s:isNTOpen() && strlen(expand('%')) > 0 && !&diff
+        let l:curwinnr = winnr()
+        NERDTreeFind
+        exec l:curwinnr . "wincmd w"
+        "wincmd p
+    endif
+endfunction
+
+autocmd BufEnter * call s:syncTree()
+
+" ========================================================================
+" NERDTree Git plugin
+" ========================================================================
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" let g:NERDTreeShowIgnoredStatus = 1
+
+" ========================================================================
+" Quick Scope - Highlights targets for f, F, t, and T motions
+" ========================================================================
+" Plugin 'unblevable/quick-scope'
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" ========================================================================
+" Gundo -- navigate undo tree
+" ========================================================================
+Plugin 'sjl/gundo.vim'
+nnoremap <Leader>gu :GundoToggle<CR>
+
+" ========================================================================
+" Xolox shell - supports fullscreen, among other things
+" ========================================================================
+Plugin 'xolox/vim-shell'
+let g:shell_fullscreen_always_on_top = 0
+
+" ========================================================================
+" OmniSharp
+" ========================================================================
+"Plugin 'OmniSharp/omnisharp-vim'
+
+" ========================================================================
+" END VUNDLE PLUGINS
+" ========================================================================
+call vundle#end()

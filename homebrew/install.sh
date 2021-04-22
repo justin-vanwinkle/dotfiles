@@ -21,4 +21,10 @@ then
 
 fi
 
+brew install node.js \
+  iterm2 \
+  visual-studio-code \
+  amethyst
+
 exit 0
+

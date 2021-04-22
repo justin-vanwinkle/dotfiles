@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# List commands in this folder
+
+ls -1 ~/.dotfiles/bin
